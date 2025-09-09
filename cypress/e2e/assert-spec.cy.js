@@ -64,8 +64,8 @@ describe('Trabalhando com asserts', () => {
 
         expect(arrStr).to.be.an('array')
         expect(arrStr).to.have.length(5)
-        expect(arrStr).to.include.members(['um', 'tres'])
-        expect(arrStr).to.not.include.members(['seis', 'sete'])
+        expect(arrStr).to.include.members(['um', 'cinco'])
+        expect(arrStr).to.not.include.members(['oito', 'seis'])
         expect(arrStr[1]).to.be.equal('dois')
 
     })
