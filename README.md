@@ -14,8 +14,6 @@ Para clonar este repositório, execute o seguinte comando no terminal:
 git clone https://github.com/amtrindade/cypress-T1606316.git
 ```
 
-Substitua `amtrindade` e `cypress-T1606251` pelo nome de usuário e nome do repositório do seu projeto.
-
 ## Instalando o Projeto
 
 Após clonar o repositório, navegue até o diretório do projeto e instale as dependências utilizando o npm:
