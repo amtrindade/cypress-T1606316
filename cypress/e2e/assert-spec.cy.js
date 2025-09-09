@@ -51,4 +51,50 @@ describe('Trabalhando com asserts', () => {
 
     })
 
+    it('Trabalhando com Arrays', () => {
+
+        const arrInt = [1, 2 , 3, 4, 5]
+        const arrStr = ['um', 'dois', 'tres', 'quatro', 'cinco']
+
+        expect(arrInt).to.be.an('array')
+        expect(arrInt).to.have.length(5)
+        expect(arrInt).to.include.members([1, 3])
+        expect(arrInt).to.not.include.members([6, 7])
+        expect(arrInt[3]).to.be.equal(4)
+
+        expect(arrStr).to.be.an('array')
+        expect(arrStr).to.have.length(5)
+        expect(arrStr).to.include.members(['um', 'tres'])
+        expect(arrStr).to.not.include.members(['seis', 'sete'])
+        expect(arrStr[1]).to.be.equal('dois')
+
+    })
+
+    it('Trabalhando com Objetos', () => {
+
+        const framework01 = {
+            nome: 'Cypress',
+            versao: 15.0,
+            empresa: 'Cypress.io',
+            site: 'https://www.cypress.io',
+            linguagem: 'JavaScript'
+        }
+
+        expect(framework01).to.be.an('object')
+        expect(framework01).to.have.property('nome')
+        expect(framework01).to.have.property('nome', 'Cypress')
+        expect(framework01).to.have.property('versao', 15.0)
+
+        const framework02 = {
+            nome: 'Cypress',
+            versao: 15.0,
+            empresa: 'Cypress.io',
+            site: 'https://www.cypress.io',
+            linguagem: 'JavaScript'
+        }
+
+        expect(framework01).to.be.deep.equal(framework02)        
+
+    })
+
 })
