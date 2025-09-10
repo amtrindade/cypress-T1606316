@@ -36,4 +36,15 @@ describe('Trabalhando com elementos da web', () => {
             .type('Testando', {force: true})
             .should('have.value', 'Testando') 
     })
+
+    it('Valida Radio Button', () => {
+        cy.get('[name="radioGroup1"]').should('have.length', 4)
+        cy.get('[name="radioGroup1"]').check('Radio 2').should('be.checked')   
+        cy.get('[name="radioGroup1"]').first().check().should('be.checked') 
+        cy.get('[name="radioGroup1"]').last().check().should('be.checked')
+        cy.get('[name="radioGroup1"]').eq(2).check().should('be.checked')
+        cy.get('[name="radioGroup1"]').eq(0).should('not.be.checked')
+        cy.get('[name="radioGroup1"]').eq(1).should('not.be.checked')
+        cy.get('[name="radioGroup1"]').eq(3).should('not.be.checked')
+    })
 })
