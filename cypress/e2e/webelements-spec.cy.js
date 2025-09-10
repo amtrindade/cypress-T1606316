@@ -47,4 +47,48 @@ describe('Trabalhando com elementos da web', () => {
         cy.get('[name="radioGroup1"]').eq(1).should('not.be.checked')
         cy.get('[name="radioGroup1"]').eq(3).should('not.be.checked')
     })
+
+    it('Valida CheckBox', () => {
+        cy.get('[name="chkbox"]').should('have.length', 4)
+        cy.get('[name="chkbox"]').check('Check 2').should('be.checked')   
+        cy.get('[name="chkbox"]').first().check().should('be.checked') 
+        cy.get('[name="chkbox"]').last().check().should('be.checked')
+        cy.get('[name="chkbox"]').eq(2).check().should('be.checked')
+
+        cy.get('input[type=checkbox]').check(['Check 3', 'Check 4']).should('be.checked')
+
+        cy.get('input[type=checkbox]').uncheck('Check 2').should('not.be.checked')
+        cy.get('input[type=checkbox]').uncheck( {multiple: true} ).should('not.be.checked')
+        cy.get('input[type=checkbox]').check( {multiple: true} ).should('be.checked')
+        
+    })
+
+    it('Valida select single', () => {
+        cy.get('[name="dropdownlist"]').select('Item 2').should('have.value', 'item2')  
+
+        cy.get('[name="dropdownlist"] option').should('have.length', 10)
+        cy.get('[name="dropdownlist"] option').should('have.length.greaterThan', 9)
+
+        //TODO - Validar os textos dos options
+        cy.get('[name="dropdownlist"] option').eq(0).should('have.text', 'Item 1')
+        cy.get('[name="dropdownlist"] option').eq(1).should('have.text', 'Item 2')
+        cy.get('[name="dropdownlist"] option').eq(2).should('have.text', 'Item 3')
+        cy.get('[name="dropdownlist"] option').eq(3).should('have.text', 'Item 4')
+        cy.get('[name="dropdownlist"] option').eq(4).should('have.text', 'Item 5')
+        cy.get('[name="dropdownlist"] option').eq(5).should('have.text', 'Item 6')
+        cy.get('[name="dropdownlist"] option').eq(6).should('have.text', 'Item 7')
+        cy.get('[name="dropdownlist"] option').eq(7).should('have.text', 'Item 8')
+        cy.get('[name="dropdownlist"] option').eq(8).should('have.text', 'Item 9')
+        cy.get('[name="dropdownlist"] option').eq(9).should('have.text', 'Item 10')
+    })
+
+    it('Valida select multiple', () => {
+        cy.get('[name="multiselectdropdown"]').select(['Item 2', 'Item 5', 'Item 8'])
+      
+        //TODO - Validar os itens selecionados
+        // cy.get('[name="multiselectdropdown"]').invoke('val').should('deep.equal', ['item2', 'item5', 'item8'])
+        // cy.get('[name="multiselectdropdown"]').invoke('val').should('have.length', 3)
+    })
+
+
 })
