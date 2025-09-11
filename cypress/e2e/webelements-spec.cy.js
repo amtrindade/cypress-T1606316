@@ -63,13 +63,13 @@ describe('Trabalhando com elementos da web', () => {
         
     })
 
-    it('Valida select single', () => {
+    it.only('Valida select single', () => {
         cy.get('[name="dropdownlist"]').select('Item 2').should('have.value', 'item2')  
 
         cy.get('[name="dropdownlist"] option').should('have.length', 10)
         cy.get('[name="dropdownlist"] option').should('have.length.greaterThan', 9)
 
-        //TODO - Validar os textos dos options
+        //Forma com o cypress
         cy.get('[name="dropdownlist"] option').eq(0).should('have.text', 'Item 1')
         cy.get('[name="dropdownlist"] option').eq(1).should('have.text', 'Item 2')
         cy.get('[name="dropdownlist"] option').eq(2).should('have.text', 'Item 3')
@@ -80,7 +80,19 @@ describe('Trabalhando com elementos da web', () => {
         cy.get('[name="dropdownlist"] option').eq(7).should('have.text', 'Item 8')
         cy.get('[name="dropdownlist"] option').eq(8).should('have.text', 'Item 9')
         cy.get('[name="dropdownlist"] option').eq(9).should('have.text', 'Item 10')
-    })
+
+        //Forma com o uso do then() e do jQuery
+        cy.get('[name="dropdownlist"] option').then(($options) => {
+            const values = []
+            $options.each(function() {
+                values.push(this.innerText)
+            })
+
+            expect(values).to.include.members([
+                'Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 
+                'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10'])
+        })
+    }) 
 
     it('Valida select multiple', () => {
         cy.get('[name="multiselectdropdown"]').select(['Item 2', 'Item 5', 'Item 8'])
