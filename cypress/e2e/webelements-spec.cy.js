@@ -63,7 +63,7 @@ describe('Trabalhando com elementos da web', () => {
         
     })
 
-    it.only('Valida select single', () => {
+    it('Valida select single', () => {
         cy.get('[name="dropdownlist"]').select('Item 2').should('have.value', 'item2')  
 
         cy.get('[name="dropdownlist"] option').should('have.length', 10)
@@ -94,12 +94,26 @@ describe('Trabalhando com elementos da web', () => {
         })
     }) 
 
-    it('Valida select multiple', () => {
+    it.only('Valida select multiple', () => {
         cy.get('[name="multiselectdropdown"]').select(['Item 2', 'Item 5', 'Item 8'])
-      
-        //TODO - Validar os itens selecionados
-        // cy.get('[name="multiselectdropdown"]').invoke('val').should('deep.equal', ['item2', 'item5', 'item8'])
-        // cy.get('[name="multiselectdropdown"]').invoke('val').should('have.length', 3)
+        //Validar os itens selecionados com o uso do then() e do jQuery
+        cy.get('[name="multiselectdropdown"]').then(($select) => {
+            const selected = $select.val()
+            expect(selected).to.have.length(3)
+            expect(selected).to.include.members(['item2', 'item5', 'item8'])
+        })
+        
+        //Validar os itens selecionados com a função invoke()
+        cy.get('[name="multiselectdropdown"]').invoke('val').should('deep.equal', ['item2', 'item5', 'item8'])
+        
+        // Validar o texto das opções selecionadas
+        cy.get('[name="multiselectdropdown"] option:selected').then($options => {
+            const selectedTexts = [...$options].map(option => option.text);
+            expect(selectedTexts).to.deep.equal(['Item 2', 'Item 5', 'Item 8']);
+        });
+        
+        cy.get('[name="multiselectdropdown"]').invoke('val').should('have.length', 3)
+
     })
 
 
