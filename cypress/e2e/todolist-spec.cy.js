@@ -10,7 +10,7 @@ describe('Todo List tests', () => {
 
         cy.get('[data-test="new-todo"]').type(`${todoItem}{enter}`)
         cy.get('ul.todo-list').should('contain', todoItem)
-        cy.get('ul.todo-list li').should('have.length', 2)
+        cy.get('ul.todo-list li').should('have.length', 3)
 
     })
 
