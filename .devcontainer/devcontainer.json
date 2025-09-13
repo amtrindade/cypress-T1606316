@@ -1,0 +1,23 @@
+{
+  "name": "Cypress DevContainer",
+  "image": "cypress/included:13.6.0",
+  "appPort": [
+    "3000:3000",
+    "8080:8080"
+  ],
+  "remoteUser": "root",
+  "features": {},
+  "postCreateCommand": "apt-get update && apt-get install -y xvfb && npm install",
+  "runArgs": [
+    "--shm-size=2g"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
+}

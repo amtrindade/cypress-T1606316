@@ -2,7 +2,7 @@
   "name": "cypress-t1606316",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {    
+  "scripts": {
     "cy:open": "cypress open --e2e"
   },
   "keywords": [],
@@ -10,6 +10,6 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "cypress": "^15.1.0"
+    "cypress": "^15.2.0"
   }
 }
