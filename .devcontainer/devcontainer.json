@@ -5,19 +5,26 @@
     "3000:3000",
     "8080:8080"
   ],
-  "remoteUser": "root",
+  "remoteUser": "cypress",
   "features": {},
-  "postCreateCommand": "apt-get update && apt-get install -y xvfb && npm install",
+  "postCreateCommand": "apt-get update && apt-get install -y xvfb && npm install --no-audit --no-fund",
   "runArgs": [
-    "--shm-size=2g"
+    "--shm-size=2g",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges:true"
   ],
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-vscode.vscode-typescript-next",
         "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "github.vscode-codeql"
       ]
     }
+  },
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "CYPRESS_CACHE_FOLDER": "/tmp/cypress-cache"
   }
 }
