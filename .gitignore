@@ -31,7 +31,7 @@ jspm_packages
 # dotenv environment variables file
 .env
 .env.test
-cypress.env.json
+dev.env.json
 # Next.js build output
 
 # cypress

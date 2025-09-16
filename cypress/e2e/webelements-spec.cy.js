@@ -116,11 +116,11 @@ describe('Trabalhando com elementos da web', () => {
 
     })
 
-    it.only('Trabalhando com wrap (empacotar em objetos Cypress', () => {
+    it('Trabalhando com wrap (empacotar em objetos Cypress', () => {
         cy.get('[name=txtbox1]').then($tfbox1 => {  
             
             //utilizando wrap()
-            cy.wrap($tfbox1).type('Antônio Trindade')
+            cy.wrap($tfbox1).type(Cypress.env('user'))
                 .should('have.value', 'Antônio Trindade')
             
             
