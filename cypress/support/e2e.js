@@ -2,6 +2,6 @@
 import './commands'
 
 //Ordenação dos selectors a partir do inspect do Cypress
-Cypress.SelectorPlayground.defaults({
-    selectorPriority: ['data-cy', 'id', 'class', 'tag', 'attributes', 'nth-child']
+Cypress.ElementSelector.defaults({
+    selectorPriority: ['data-test', 'id', 'class', 'tag', 'attributes', 'nth-child']
 })
