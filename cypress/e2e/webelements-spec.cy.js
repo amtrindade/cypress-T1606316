@@ -94,7 +94,7 @@ describe('Trabalhando com elementos da web', () => {
         })
     }) 
 
-    it.only('Valida select multiple', () => {
+    it('Valida select multiple', () => {
         cy.get('[name="multiselectdropdown"]').select(['Item 2', 'Item 5', 'Item 8'])
         //Validar os itens selecionados com o uso do then() e do jQuery
         cy.get('[name="multiselectdropdown"]').then(($select) => {
@@ -113,6 +113,21 @@ describe('Trabalhando com elementos da web', () => {
         });
         
         cy.get('[name="multiselectdropdown"]').invoke('val').should('have.length', 3)
+
+    })
+
+    it.only('Trabalhando com wrap (empacotar em objetos Cypress', () => {
+        cy.get('[name=txtbox1]').then($tfbox1 => {  
+            
+            //utilizando wrap()
+            cy.wrap($tfbox1).type('Antônio Trindade')
+                .should('have.value', 'Antônio Trindade')
+            
+            
+            // $tfbox1.val('Antônio Trindade')
+            // expect($tfbox1).to.have.value('Antônio Trindade')
+        })
+
 
     })
 
