@@ -29,9 +29,9 @@ jspm_packages
 *.tgz
 
 # dotenv environment variables file
-.env
+.env.*
 .env.test
-dev.env.json
+cypress.env.json
 # Next.js build output
 
 # cypress
