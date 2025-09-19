@@ -40,4 +40,52 @@ describe('Testes relacionados a API', () => {
             });
         });
     })
+
+    describe('Testes referentes a edição de usuario', () => {
+
+        let usuarioId;
+        let email;
+
+        beforeEach(() => {
+            email = `cy${Math.floor(Math.random() * 100)}@target.com.br`
+            cy.request({
+                method: 'POST',
+                url: 'https://serverest.dev/usuarios',
+                body: {
+                    "nome": "Cypress Teste",
+                    "email": email,
+                    "password": "teste",
+                    "administrador": "true"
+                }
+            }).then((response) => {
+                expect(response.status).to.equal(201)                
+                usuarioId = response.body._id;
+            })
+        })
+
+        it('Edita o nome do usuário cadastrado', () => {
+
+            cy.request({
+                method: 'PUT',
+                url: `https://serverest.dev/usuarios/${usuarioId}`,
+                body: {
+                    "nome": "Cypress Teste Editado",
+                    "email": email,
+                    "password": "teste",
+                    "administrador": "true"
+                }
+            }).then((response) => {
+                expect(response.status).to.equal(200)
+                expect(response.body).to.have.property('message', 'Registro alterado com sucesso')
+
+                cy.request({
+                method: 'GET',
+                url: `https://serverest.dev/usuarios/${usuarioId}`
+                }).then((getResponse) => {
+                        expect(getResponse.status).to.equal(200);                        
+                        expect(getResponse.body).to.have.property('nome', 'Cypress Teste Editado');
+                });
+            })            
+        })
+    })
 })
