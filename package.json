@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "cy:open": "cypress open --e2e"
+    "cy:open": "cypress open --e2e",
+    "cy:run": "cypress run --e2e"
   },
   "keywords": [],
   "author": "",
